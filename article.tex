@@ -9,7 +9,7 @@
 \usepackage{float}
 
 \newcommand{\bigsize}{\fontsize{25pt}{20pt}\selectfont}
-\setCJKmainfont[BoldFont=Adobe Fangsong Std]{Adobe Fangsong Std}
+\setCJKmainfont[BoldFont=STFangsong]{STFangsong}
 % Page length commands go here in the preamble
 \setlength{\oddsidemargin}{-0.25in} % Left margin of 1 in + 0 in = 1 in
 \setlength{\textwidth}{7in}   % Right margin of 8.5 in - 1 in - 6.5 in = 1 in
@@ -68,17 +68,47 @@
 
 \end{enumerate}
 
-\section{Typing Text}
+\section{实验步骤} % (fold)
+\label{sec:实验步骤}
+\begin{enumerate}[(1)~]
+    \item 设置仪表为频域模式的回损连接模式后，校正网络分析仪;
+    \item 设置参数并加载被测天线，开始测量输入阻抗;
+    \item 调整测试频率寻找天线的两个谐振点并记录相应阻抗数据;
+    \item 更换不同电径（$\Phi1, \Phi3, \Phi9$）的天线，分析两个谐振点的阻抗变化情况。在smith圆图上的输入阻抗曲线上，曲线的左端输入阻抗虚部为0的点为二分之一波长谐振点，曲线的右端输入阻抗虚部为0的点为四分之一波长谐振点。记录1mm，3mm，9mm天线的半波长和四分之一波长的谐振点。
+
+        设置参数：
+
+        $BF=600, \Delta F=25, EF=2600, n=81$
+\end{enumerate}
+
+% section 实验步骤 (end)
+\section{简介}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{images/pic1.png}
+\caption{我是一个图片}
+\end{figure}
+
+
+\LaTeX \; is a markup language designed and implemented by \textbf{Leslie Lamport}, based on \textbf{Donald E. Knuth}'s typesetting language \TeX.  The markup in the source file of a \LaTeX \; document my appear somewhat challenging, but the compiled result of the document is certainly a pleasing rendering of the mark-up material.\\
+
+\LaTeX \; was built on \TeX 's foundation.  An article is divided into \emph{logical units}, including an abstract, various sections and subsections, theorems, and a bibliography.  The logical units are typed independently of one another.  Once all the units have been typed, \LaTeX \, controls the \emph{placement} and \emph{formating} of these elements. \LaTeX \; automatically numbers the sections, theorems, and equations in your article, and builds the cross-references.  If any changes is made to the article, it automatically renumbers its various parts and rebuilds the cross-references.\\
+
+\emph{Packages} are extensions of \LaTeX.  \LaTeX \; commands, as a rule, start with a backslash (\textbackslash) and tells \LaTeX  to do something special. For example, in the instruction\\
+\verb+\emph{instructions to \LaTeX} +, \verb+\emph+ is a \LaTeX \; command. Another kind of instruction is called an \emph{environment}. For example, the commands \verb+\begin{flushright}+ and \verb+\end{flushright}+ enclose a \verb+flushright+ environment---texts that are typed inside this environment are right justified (lined up against the right margin) when typeset.
+
+\section{输入文字}
 The following keys are used to type text in a \LaTeX \; source file:
 \begin{center}
-    \begin{verbatim}
+   \begin{verbatim}
          a-z  A-Z  0-9
          +  =  *  /  ( )  [ ]
    \end{verbatim}
 \end{center}
 You may also use the following punctuation marks:
 \begin{center}
-    \begin{verbatim}
+   \begin{verbatim}
      ,  ;  .  ?  !  :  `  '  -
    \end{verbatim}
 \end{center}
@@ -86,7 +116,7 @@ and the spacebar, and the Return (or Enter) key.\\
 
 There are thirteen special keys that are mostly used in \LaTeX \; instructions:
 \begin{center}
-    \begin{verbatim}
+   \begin{verbatim}
       #  $  %  &  ~  _  ^  \  { }  @  "  |
    \end{verbatim}
 \end{center}
@@ -102,29 +132,29 @@ In a \LaTeX \; document source file, left double quotes are typed a \verb+` `+ (
 
 In a \LaTeX \; command that requires an argument, the argument follows the name of the command and is placed between \{ and \}. Command names are \emph{case sensitive}. The command \verb+\\+ (\verb+\newline+ is another form) breaks a line. You can use the \verb+\\+ command and specify an appropriate amount of vertical space, for example \verb+\\[1in]+. Note that this command uses \emph{square brackets} rather than braces because the argument  is \emph{optional}. The distance/spacing may be given in points(pt), centimenters(cm), or inches(in).  To force a page break, use \verb+\newpage+.
 
-\section{Typing Math}
+\section{输入数学公式}
 In addition to the keys listed above, you need the keys \verb+|, <+, and \verb+>+ to type mathematical formulas. (\verb+|+ is the shifted \verb+\+ key on many keyboards). \\
 
 There are two kinds of math formulas and environments:
 \begin{enumerate}
-    \item \emph{Inline math environments} open and close with \$ or open with \verb+\(+ and close with \verb+\)+.
-    \item \emph{Displayed math environments} open with \verb+\[+ and close with \verb+\]+.  Other forms of the displayed
-    environment are \verb+\begin{equation*} ... \end{equation*}+ and\\
-    \verb+\begin{equation} ... \end{equation}+.
+   \item \emph{Inline math environments} open and close with \$ or open with \verb+\(+ and close with \verb+\)+.
+   \item \emph{Displayed math environments} open with \verb+\[+ and close with \verb+\]+.  Other forms of the displayed
+         environment are \verb+\begin{equation*} ... \end{equation*}+ and\\
+          \verb+\begin{equation} ... \end{equation}+.
 \end{enumerate}
 Within the math environment, \LaTeX uses its own spacing rules and completely ignores the number of white spaces typed with two exceptions:
 \begin{enumerate}
-    \item Spaces that delimit commands (e.g., in \verb+$\infty a$+, the space is not ignored; in fact, \verb+\inftya$+ is
+  \item Spaces that delimit commands (e.g., in \verb+$\infty a$+, the space is not ignored; in fact, \verb+\inftya$+ is
         an error)
-    \item Spaces in the arguments of commands that temporarily revert to text mode (\verb+\mbox+ and \verb+\text+ are such commands).
+  \item Spaces in the arguments of commands that temporarily revert to text mode (\verb+\mbox+ and \verb+\text+ are such commands).
 \end{enumerate}
 In text mode, many spaces equal one space; whereas, in math mode, spaces are ignored (unless they terminate a command). To asjust the spacing in a typeset document, use a spacing command. The same formula may be typeset differently depending on whether it is inline or display. For example, $\sum_{i=1}^{n} i^{2}$ is inline math.  The following is the same expression as displayed math
 \[
-    \sum_{i=1}^{n} i^{2}.
+  \sum_{i=1}^{n} i^{2}.
 \]
 Math symbols are invoked by commands inside a math formula or environment. The math symbols are organized into tables in Appendix A of textbook. Some commands (e.g. \verb+\sqrt+) need arguments enclosed in braces (\{ and \}).  For example, to typeset $\sqrt{x^{2} y^{2}}$, type \verb+$\sqrt{x^{2} y^{2}}$+. To typeset $\sqrt[n]{x^{2} y^{2}}$, type \verb+$\sqrt[n]{x^{2} y^{2}}$+. Some commends need more than one arguments.  For example to typeset
 \[
-    \frac{\sin x}{\cos^{2} x + \tan x}
+   \frac{\sin x}{\cos^{2} x + \tan x}
 \]
 type
 \begin{verbatim}
@@ -135,16 +165,16 @@ type
 \verb+\frac+ is the command; $\sin x$ and $\cos^{2} x + \tan x$ are the arguments.\\
 
 \begin{theorem}
-    This is the Pythagorean Theorem. It says
-    \begin{equation}
-        x^{2}+y^{2}=z^{2}.
-    \end{equation}
+  This is the Pythagorean Theorem. It says
+  \begin{equation}
+    x^{2}+y^{2}=z^{2}.
+  \end{equation}
 \end{theorem}
 \begin{definition}
-    Earth is where life is possible.
+Earth is where life is possible.
 \end{definition}
 
-\section{References}
+\section{参考文献}
 Michael Downes \emph{Short Math Guide for \LaTeX}, AMS, 2002\\[0.2in]
 George Gratzer, \emph{First Steps in \LaTeX}, Springer-Verlag, New York, 1999\\[0.2in]
 
