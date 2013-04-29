@@ -1,10 +1,12 @@
 \documentclass[12pt]{article}
 \usepackage{amssymb,amsmath,latexsym}
 \usepackage{hyperref}
-\usepackage[noindent,nofonts]{ctex}
+\usepackage[nofonts]{ctexcap}
 \usepackage{setspace}
 \usepackage{graphicx}
 \usepackage{fix-cm}
+\usepackage{enumerate}
+\usepackage{float}
 
 \newcommand{\bigsize}{\fontsize{25pt}{20pt}\selectfont}
 \setCJKmainfont[BoldFont=Adobe Fangsong Std]{Adobe Fangsong Std}
@@ -21,31 +23,33 @@
 
 \setlength{\parindent}{0in}
 \begin{document}
-
+\CTEXsetup[format={\Large\bfseries}]{section}
+\CTEXsetup[number={\chinese{section}}]{section}
+\pagestyle{plain}
 \begin{titlepage}
     \center
-\includegraphics[width=3.5in]{buptname.eps}
+    \includegraphics[width=3.5in]{images/buptname.eps}
 
-\begin{spacing}{5}
-{\bigsize 实验报告}
-\end{spacing}
+    \begin{spacing}{5}
+        {\bigsize 实验报告}
+    \end{spacing}
 
-\includegraphics[width=1.5in]{buptseal.eps}
+    \includegraphics[width=1.5in]{images/buptseal.eps}
 
-\begin{spacing}{1}
-    \vspace{3cm}
-\Large实验名称: 电磁场与微波实验天线部分~实验一
-    \vspace{3cm}
-\end{spacing}
+    \begin{spacing}{1}
+        \vspace{3cm}
+        \Large实验名称: 电磁场与微波实验天线部分~实验一
+        \vspace{3cm}
+    \end{spacing}
 
-\begin{minipage}{0.23\linewidth}
-\normalsize姓~~~~~~名：丁培轩 \\
-\normalsize学~~~~~~号：10210726\\
-\normalsize班~~~~~~级：2010211122\\
-\normalsize班内序号：19\\
-\end{minipage}
+    \begin{minipage}{0.23\linewidth}
+        \normalsize姓~~~~~~名：丁培轩 \\
+        \normalsize学~~~~~~号：10210726\\
+        \normalsize班~~~~~~级：2010211122\\
+        \normalsize班内序号：19\\
+    \end{minipage}
 
-{\small\em \today }
+    {\small\em \today }
 \end{titlepage}
 
 \tableofcontents
@@ -55,26 +59,26 @@
 \section{实验目的}
 
 \begin{enumerate}
-  \item 掌握网络分析仪校正方法
+    \item 掌握网络分析仪校正方法
 
-  \item 学习网络分析仪测量振子天线输入阻抗的方法；
-  \item 研究振子天线输入阻抗随振子电径变化的情况。
+    \item 学习网络分析仪测量振子天线输入阻抗的方法；
+    \item 研究振子天线输入阻抗随振子电径变化的情况。
 
-      注:重点观察谐振点与天线电径关系（ $\frac{\lambda}{4}$、$\frac{\lambda}{2}$）;
+        注:重点观察谐振点与天线电径关系（ $\frac{\lambda}{4}$、$\frac{\lambda}{2}$）;
 
 \end{enumerate}
 
 \section{Typing Text}
 The following keys are used to type text in a \LaTeX \; source file:
 \begin{center}
-   \begin{verbatim}
+    \begin{verbatim}
          a-z  A-Z  0-9
          +  =  *  /  ( )  [ ]
    \end{verbatim}
 \end{center}
 You may also use the following punctuation marks:
 \begin{center}
-   \begin{verbatim}
+    \begin{verbatim}
      ,  ;  .  ?  !  :  `  '  -
    \end{verbatim}
 \end{center}
@@ -82,7 +86,7 @@ and the spacebar, and the Return (or Enter) key.\\
 
 There are thirteen special keys that are mostly used in \LaTeX \; instructions:
 \begin{center}
-   \begin{verbatim}
+    \begin{verbatim}
       #  $  %  &  ~  _  ^  \  { }  @  "  |
    \end{verbatim}
 \end{center}
@@ -103,24 +107,24 @@ In addition to the keys listed above, you need the keys \verb+|, <+, and \verb+>
 
 There are two kinds of math formulas and environments:
 \begin{enumerate}
-   \item \emph{Inline math environments} open and close with \$ or open with \verb+\(+ and close with \verb+\)+.
-   \item \emph{Displayed math environments} open with \verb+\[+ and close with \verb+\]+.  Other forms of the displayed
-         environment are \verb+\begin{equation*} ... \end{equation*}+ and\\
-          \verb+\begin{equation} ... \end{equation}+.
+    \item \emph{Inline math environments} open and close with \$ or open with \verb+\(+ and close with \verb+\)+.
+    \item \emph{Displayed math environments} open with \verb+\[+ and close with \verb+\]+.  Other forms of the displayed
+    environment are \verb+\begin{equation*} ... \end{equation*}+ and\\
+    \verb+\begin{equation} ... \end{equation}+.
 \end{enumerate}
 Within the math environment, \LaTeX uses its own spacing rules and completely ignores the number of white spaces typed with two exceptions:
 \begin{enumerate}
-  \item Spaces that delimit commands (e.g., in \verb+$\infty a$+, the space is not ignored; in fact, \verb+\inftya$+ is
+    \item Spaces that delimit commands (e.g., in \verb+$\infty a$+, the space is not ignored; in fact, \verb+\inftya$+ is
         an error)
-  \item Spaces in the arguments of commands that temporarily revert to text mode (\verb+\mbox+ and \verb+\text+ are such commands).
+    \item Spaces in the arguments of commands that temporarily revert to text mode (\verb+\mbox+ and \verb+\text+ are such commands).
 \end{enumerate}
 In text mode, many spaces equal one space; whereas, in math mode, spaces are ignored (unless they terminate a command). To asjust the spacing in a typeset document, use a spacing command. The same formula may be typeset differently depending on whether it is inline or display. For example, $\sum_{i=1}^{n} i^{2}$ is inline math.  The following is the same expression as displayed math
 \[
-  \sum_{i=1}^{n} i^{2}.
+    \sum_{i=1}^{n} i^{2}.
 \]
 Math symbols are invoked by commands inside a math formula or environment. The math symbols are organized into tables in Appendix A of textbook. Some commands (e.g. \verb+\sqrt+) need arguments enclosed in braces (\{ and \}).  For example, to typeset $\sqrt{x^{2} y^{2}}$, type \verb+$\sqrt{x^{2} y^{2}}$+. To typeset $\sqrt[n]{x^{2} y^{2}}$, type \verb+$\sqrt[n]{x^{2} y^{2}}$+. Some commends need more than one arguments.  For example to typeset
 \[
-   \frac{\sin x}{\cos^{2} x + \tan x}
+    \frac{\sin x}{\cos^{2} x + \tan x}
 \]
 type
 \begin{verbatim}
@@ -131,13 +135,13 @@ type
 \verb+\frac+ is the command; $\sin x$ and $\cos^{2} x + \tan x$ are the arguments.\\
 
 \begin{theorem}
-  This is the Pythagorean Theorem. It says
-  \begin{equation}
-    x^{2}+y^{2}=z^{2}.
-  \end{equation}
+    This is the Pythagorean Theorem. It says
+    \begin{equation}
+        x^{2}+y^{2}=z^{2}.
+    \end{equation}
 \end{theorem}
 \begin{definition}
-Earth is where life is possible.
+    Earth is where life is possible.
 \end{definition}
 
 \section{References}
