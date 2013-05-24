@@ -1,0 +1,651 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of BUPT
+%   LaTeX + CJK  北京邮电大学博士（硕士）论文模板
+%   Some Codes Based on Wang Lei's Template for THU
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2006  by Wang Xu (gnawux@gmail.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for Doctor (Master) Thesis of Tsinghua University
+%   LaTeX + CJK     清华大学博士（硕士）论文模板
+%   Based on Wang Tianshu's Template for XJTU
+%   Version: 1.75
+%   Last Update: 2004-04-12
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002-2004  by  Lei Wang (BaconChina)       (bcpub@sina.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%   LaTeX File for phd thesis of xi'an Jiao Tong University
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%   Copyright 2002  by  Wang Tianshu    (tswang@asia.com)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\ProvidesPackage{bupt}
+
+%=======================================================================
+% Packages Inclusion
+%
+\RequirePackage[pdftex]{graphicx}
+%\RequirePackage{caption}
+\RequirePackage{subfig}
+\RequirePackage{indentfirst}
+\RequirePackage[a4paper,includeheadfoot,left=2.75cm,right=2.75cm,top=2.7cm,bottom=4.0cm]{geometry}
+\RequirePackage{CJK}
+\RequirePackage[perpage,symbol]{footmisc}	% 脚注控制
+\RequirePackage{amsmath,amssymb,mathrsfs}
+\RequirePackage[amsmath,thmmarks]{ntheorem}
+% 因为图形可浮动到当前页的顶部，所以它可能会出现
+% 在它所在文本的前面. 要防止这种情况，可使用 flafter
+% 宏包
+%\RequirePackage{flafter}
+%浮动图形控制宏包
+%允许上一个section的浮动图形出现在下一个section的开始部分
+%该宏包提供处理浮动对象的 \FloatBarrier 命令，使所有未处
+%理的浮动图形立即被处理
+\RequirePackage[below]{placeins}
+% 图文混排用宏包
+\RequirePackage{floatflt}
+% 图形和表格的控制
+\RequirePackage{rotating}
+% tex1cm宏包，控制字体的大小
+\RequirePackage{type1cm}
+% 控制标题的宏包
+\RequirePackage[sf]{titlesec}
+% 控制目录的宏包
+\RequirePackage{titletoc}
+% 处理数学公式中的黑斜体的宏包
+\RequirePackage{bm}
+%可将浮动对象放置到文件的最后
+%\RequirePackage{endfloat}
+% fancyhdr宏包 页眉和页脚的相关定义
+\RequirePackage{fancyhdr}
+%\RequirePackage{fancyref}
+\RequirePackage{cite}
+% 支持引用缩写的宏包
+%\RequirePackage[square,super,sort&compress]{natbib}
+%\RequirePackage{hypernat}
+% 定制表格和图形的多行标题行距
+\RequirePackage{setspace}
+% 打印当前页面格式的宏包
+\RequirePackage{layouts}
+% 使用Times字体的宏包
+\RequirePackage{times}
+%----------------------------------
+% Required for BUPT's Format
+\RequirePackage{ifthen}
+\RequirePackage{multirow,longtable}
+% 生成有书签的pdf及其开关
+\RequirePackage[pdftex,
+            CJKbookmarks=true,
+			pdfstartview=FitH,
+            bookmarksnumbered=true,
+            bookmarksopen=true,
+            colorlinks=true,
+            citecolor=black,
+            linkcolor=black,
+            anchorcolor=black,
+            urlcolor=black
+            ]{hyperref}
+%
+% Packages Inclusion
+%=======================================================================
+
+%\AtBeginDvi{\special{pdf:tounicode GBK-EUC-UCS2}} % GBK -> Unicode
+
+%=======================================================================
+% Font Setting:
+%-----------------------------------------------------------------------
+% 1. Families Definations
+%
+%    Only 3 families are introduced here, for the normal font, caption
+% font, and title font.
+%-----------------------------------------------------------------------
+\newcommand{\song}{\CJKfamily{song}}    % 宋体
+\newcommand{\kai}{\CJKfamily{kai}}      % 楷体
+\newcommand{\hei}{\CJKfamily{hei}}      % 黑体
+%-----------------------------------------------------------------------
+% 2. Font size definition
+%
+%    Copy From THU Template by Wang Lei with modifying by Wang Xu.
+%-----------------------------------------------------------------------
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}  	  % 一号
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}  	  % 二号
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont} 	  % 小二
+\newcommand{\sanhao}{\fontsize{16pt}{16pt}\selectfont} 	  % 三号
+\newcommand{\xiaosan}{\fontsize{15pt}{15pt}\selectfont}	  % 小三
+\newcommand{\sihao}{\fontsize{14pt}{14pt}\selectfont}  	  % 四号
+\newcommand{\xiaosi}{\fontsize{12pt}{20pt}\selectfont} 	  % 小四
+\newcommand{\wuhao}{\fontsize{10.5pt}{10.5pt}\selectfont} % 五号
+\newcommand{\defaultfont}{\renewcommand{\baselinestretch}{1.5}%
+	\fontsize{12pt}{13pt}\selectfont}
+%
+% End of Font Setting
+%=======================================================================
+
+%===================================================================
+% TOC and Title setting, Based on THU style
+%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{2}
+
+\newcommand\CJKprechaptername{Chapter}
+\newcommand\CJKchaptername{}
+\newcommand\CJKthechapter{\@arabic\c@chapter}
+
+\renewcommand\chaptername{\CJKprechaptername\CJKthechapter\CJKchaptername}
+
+\def\@chapter[#1]#2{\if@mainmatter
+                       \refstepcounter{chapter}%
+                       \typeout{\CJKprechaptername\CJKthechapter\CJKchaptername}%
+                       \addcontentsline{toc}{chapter}%
+                            {\protect\numberline{}\CJKprechaptername%
+                            \expandafter\noexpand\CJKthechapter\CJKchaptername\hspace{0.8em}#1}%
+                      \else
+                        \addcontentsline{toc}{chapter}{#1}%
+                      \fi
+                      \chaptermark{#1}%
+                      \addtocontents{lof}{\protect\addvspace{10\p@}}%
+                      \addtocontents{lot}{\protect\addvspace{10\p@}}%
+                      \@makechapterhead{#2}%
+                      \@afterheading
+                      }
+
+\let\@appendix\appendix
+
+\titleformat{\chapter}[hang]
+    {\normalfont\sanhao\filcenter\hei\sf}
+    {\sanhao{\chaptertitlename}}
+    {20pt}{\sanhao}
+\titlespacing{\chapter}{0pt}{0pt}{2em}
+
+\titleformat{\section}[hang]
+	{\hei \sf \sihao}
+    {\sihao \thesection}{0.5em}{}{}
+\titlespacing{\section}{0pt}{0pt}{1em}
+
+\titleformat{\subsection}[hang]{\hei \sf \wuhao}
+    {\wuhao \thesubsection}{0.5em}{}{}
+\titlespacing{\subsection}{0pt}{0pt}{0pt}
+
+\titleformat{\subsubsection}[hang]{\hei \sf \wuhao}
+    {\wuhao\thesubsubsection }{0.5em}{}{}
+\titlespacing{\subsubsection}{0pt}{0pt}{0pt}
+
+\dottedcontents{chapter}[0.0em]{\hei\vspace{0.5em}}{0.0em}{5pt}
+\dottedcontents{section}[1.9em]{}{1.8em}{5pt}
+\dottedcontents{subsection}[2.8em]{}{2.7em}{5pt}
+\dottedcontents{subsubsection}[3.5em]{}{3.4em}{5pt}
+%
+% End of TOC and Title setting
+%===================================================================
+
+%===================================================================
+% Head and Foot Settings (From THU style)
+%
+\newcommand{\makeheadrule}{%
+    \makebox[0pt][l]{\rule[.7\baselineskip]{\headwidth}{0.8pt}}%
+    \vskip-.8\baselineskip}
+
+\renewcommand{\headrule}{%
+    {\if@fancyplain\let\headrulewidth\plainheadrulewidth\fi
+     \makeheadrule}}
+
+\pagestyle{fancyplain}
+
+%去掉章节标题中的数字
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername \ #1}{}}
+
+ \fancyhf{}
+
+%在book文件类别下,\leftmark自动存录各章之章名,\rightmark记录节标题
+\fancyhead[RO]{\wuhao\CJKfamily{song}\leftmark}
+\fancyhead[LE]{\wuhao\CJKfamily{song}\BUPT@buptname\BUPT@degreethesis}
+\fancyfoot[C,C]{\wuhao--~\thepage~--}
+%
+% End of Head and Foot Settings
+%===================================================================
+
+%===================================================================
+% Resources (Will be redifined in cpx file):
+%-------------------------------------------------------------------
+%  1. Resources for title page
+%-------------------------------------------------------------------
+\newcommand{\BUPT@secretname}{SL}
+\newcommand{\BUPT@secretlimitname}{SLY}
+\newcommand{\BUPT@secretoff}{}
+\newcommand{\BUPT@secreton}{Se}
+\newcommand{\BUPT@yearname}{Year}
+\newcommand{\BUPT@doctor}{Doctor}
+\newcommand{\BUPT@master}{Master}
+\newcommand{\BUPT@thesisname}{Thesis}
+\newcommand{\BUPT@titlename}{Title}
+\newcommand{\BUPT@titlefirst}{}
+\newcommand{\BUPT@titlesecond}{}
+\newcommand{\BUPT@idname}{ID}
+\newcommand{\BUPT@namename}{Name}
+\newcommand{\BUPT@majorname}{Major in}
+\newcommand{\BUPT@tutorname}{Tutor}
+\newcommand{\BUPT@schoolname}{School}
+\newcommand{\BUPT@id}{}
+\newcommand{\BUPT@name}{}
+\newcommand{\BUPT@major}{}
+\newcommand{\BUPT@tutor}{}
+\newcommand{\BUPT@school}{}
+\newcommand{\BUPT@monname}{Mon}
+\newcommand{\BUPT@dayname}{th}
+\newcommand{\BUPT@year}{}
+\newcommand{\BUPT@mon}{}
+\newcommand{\BUPT@day}{}
+\newcommand{\BUPT@appendixname}{Appendix}
+%-------------------------------------------------------------------
+%  2. Resources for declarations
+%-------------------------------------------------------------------
+\newcommand{\BUPT@declarationname}{Declaration}
+\newcommand{\BUPT@creativename}{Declaration}
+\newcommand{\BUPT@authorizationname}{Authorization}
+\newcommand{\BUPT@creative}{%
+The contents\ldots%
+}
+\newcommand{\BUPT@authorization}{%
+The contents\ldots%
+}
+%-------------------------------------------------------------------
+%  3. Resources for abstractions
+%-------------------------------------------------------------------
+\newcommand{\BUPT@titlezh}{Chinese Title}
+\newcommand{\BUPT@abstractzhname}{Abstract}
+\newcommand{\BUPT@keywordszhname}{Keywords}
+\newcommand{\BUPT@titleen}{THE ENGLISH TITLE MAY \\EXPAND ONE, TWO,\\OR THREE LINES}
+\newcommand{\BUPT@abstractenname}{ABSTRACT}
+\newcommand{\BUPT@keywordsenname}{KEY WORDS}
+%-------------------------------------------------------------------
+%  4. Resources for ohter matters
+%-------------------------------------------------------------------
+\newcommand{\BUPT@buptname}{BUPT}
+\newcommand{\BUPT@denotationname}{Denotation}
+\newcommand{\BUPT@acknowledgename}{Acknowledgment}
+\newcommand{\BUPT@publicationname}{Publiction}
+%
+% End of Resources
+%===================================================================
+
+%===================================================================
+% Default Settings:
+%
+\newcommand{\BUPT@secretlevel}{\BUPT@secretoff}
+\newcommand{\BUPT@secretlimit}{}
+\newcommand{\BUPT@degreethesis}{\BUPT@doctor\BUPT@thesisname}
+\newcommand{\BUPT@secretlimityear}{\rule{12pt}{0.5pt}}
+\newcommand{\BUPT@critical}{critical}
+\newcommand{\BUPT@keywordszh}{}
+\newcommand{\BUPT@keywordsen}{}
+\newcommand{\BUPT@infofill}{\hfill}
+%
+% End of Default Settings
+%===================================================================
+
+%===================================================================
+% Internel Commands:
+%
+\newcommand{\BUPT@compress}{%
+	\setlength{\topsep}{0pt}%
+	\setlength{\parskip}{0pt}%
+	\setlength{\partopsep}{0pt}%
+}
+	
+%% Learned the method  from moredef.sty
+\newtoks\BUPT@buf
+\newcommand{\BUPT@append}[2]{%
+	\BUPT@buf=\expandafter{#1#2}%
+	\edef#1{\the\BUPT@buf}%
+}
+% 
+% End of Internal Commands
+%===================================================================
+
+%===================================================================
+% User Command:
+\newcommand{\SecretLevel}[1]{%
+	\ifthenelse{\equal{#1}{off}}{\renewcommand{\BUPT@secretlevel}{\BUPT@secretoff}}{}%
+	\ifthenelse{\equal{#1}{on}}{\renewcommand{\BUPT@secretlevel}{\BUPT@secreton}}{}%
+%	\ifthenelse{\equal{#1}{hard}}{\renewcommand{\BUPT@secretlevel}{\BUPT@secrethard}}{}%
+}
+
+\newcommand{\SecretLimit}[1]{%
+	\renewcommand{\BUPT@secretlimit}{\CJKnumber{#1}\BUPT@yearname}%
+	\renewcommand{\BUPT@secretlimityear}{\underline{\CJKnumber{#1}}}%
+}
+
+\newcommand{\Degree}[1]{%
+	\ifthenelse{\equal{#1}{doctor}}%
+		{\renewcommand{\BUPT@degreethesis}{\BUPT@doctor\BUPT@thesisname}}{}%
+	\ifthenelse{\equal{#1}{PhD}}%
+		{\renewcommand{\BUPT@degreethesis}{\BUPT@doctor\BUPT@thesisname}}{}%
+	\ifthenelse{\equal{#1}{master}}%
+		{\renewcommand{\BUPT@degreethesis}{\BUPT@master\BUPT@thesisname}}{}%
+}
+
+\newcommand{\CoverTitle}[2]{%
+	\renewcommand{\BUPT@titlefirst}{#1}%
+	\renewcommand{\BUPT@titlesecond}{#2}%
+}
+
+\newcommand{\StudentID}[1]{\renewcommand{\BUPT@id}{#1}}
+\newcommand{\Name}[1]{\renewcommand{\BUPT@name}{#1}}
+\newcommand{\MajorIn}[1]{\renewcommand{\BUPT@major}{#1}}
+\newcommand{\Tutor}[1]{\renewcommand{\BUPT@tutor}{#1}}
+\newcommand{\School}[1]{\renewcommand{\BUPT@school}{#1}}
+
+\newcommand{\Date}[3]{%
+	\renewcommand{\BUPT@year}{#1}%
+	\renewcommand{\BUPT@mon}{#2}%
+	\renewcommand{\BUPT@day}{#3}%
+}
+
+\newcommand{\InfoAlign}[1]{%
+	\ifthenelse{\equal{#1}{center}}{\renewcommand{\BUPT@infofill}{\hfill}}{}%
+	\ifthenelse{\equal{#1}{left}}{\renewcommand{\BUPT@infofill}{}}{}%
+}
+
+\newcommand{\Beautifier}{\renewcommand{\BUPT@critical}{beautifier}}
+
+
+\newcommand{\TitleZh}[1]{\renewcommand{\BUPT@titlezh}{#1}}
+\newcommand{\TitleEn}[1]{\renewcommand{\BUPT@titleen}{\uppercase{#1}}}
+
+\newcommand{\KeywordZh}[1]{%
+	\BUPT@append{\BUPT@keywordszh}{\enskip#1}%
+	}
+\newcommand{\KeywordEn}[1]{%
+	\BUPT@append{\BUPT@keywordsen}{\enskip#1}%
+	}
+
+\newcommand{\MakeCover}{%
+    \begin{titlepage}
+		\BUPT@compress
+		%Secret Settings
+		\setlength{\unitlength}{1pt}
+		\noindent
+		\begin{picture}(0,0)\put(0,27.5){
+		\begin{minipage}[t]{\textwidth}
+				\noindent%
+				\sihao\hspace{9pt}\bf
+				\begin{tabular}[t]{@{}p{37.89pt}@{}p{70.3pt}@{}p{70.3pt}@{}p{42.16pt}@{}}
+				\BUPT@secretname: & \BUPT@secretlevel & \BUPT@secretlimitname: & \BUPT@secretlimit\\
+				\end{tabular}
+			\vspace{47.30pt}
+			\begin{center}
+				\noindent\includegraphics[height=3.18cm]{bupt}\\
+				\vspace{16pt}
+				{\hei\fontsize{32.12pt}{32.12pt}\selectfont\bf\BUPT@degreethesis}\\
+				\vspace{30pt}
+				\noindent\includegraphics[height=3.34cm]{bupt-logo}\\
+				\vspace{64pt}
+				\setlength{\arrayrulewidth}{1pt}
+				\begin{tabular}{@{}p{54.2pt}@{}p{233.4pt}}
+					\xiaoer\textbf{\BUPT@titlename:} & 
+						\rule{0pt}{26pt}\xiaoer\BUPT@titlefirst \\ \cline{2-2}
+					\xiaoer\mbox{~}				& 
+						\rule{0pt}{26pt}\xiaoer\BUPT@titlesecond \\ \cline{2-2}
+				\end{tabular}\\
+				\vspace{12.5pt}
+				\begin{tabular}{@{}p{70pt}@{}p{110pt}@{}}
+					\sihao\textbf{\BUPT@idname:} 	& \rule{0pt}{26.9pt}\sihao\BUPT@infofill\BUPT@id\BUPT@infofill     \mbox{~}\\ \cline{2-2}
+					\sihao\textbf{\BUPT@namename:} 	& \rule{0pt}{26.9pt}\sihao\BUPT@infofill\BUPT@name\BUPT@infofill   \mbox{~}\\ \cline{2-2}
+					\sihao\textbf{\BUPT@majorname:} & \rule{0pt}{26.9pt}\sihao\BUPT@infofill\BUPT@major\BUPT@infofill  \mbox{~}\\ \cline{2-2}
+					\sihao\textbf{\BUPT@tutorname:} & \rule{0pt}{26.9pt}\sihao\BUPT@infofill\BUPT@tutor\BUPT@infofill  \mbox{~}\\ \cline{2-2}
+					\sihao\textbf{\BUPT@schoolname:}& \rule{0pt}{26.9pt}\sihao\BUPT@infofill\BUPT@school\BUPT@infofill \mbox{~}\\ \cline{2-2}
+				\end{tabular}\\
+				\vspace{48pt}
+				\begin{tabular}{@{}p{56pt}@{}p{14pt}@{}p{21pt}@{}p{14pt}@{}p{28pt}@{}p{14pt}@{}}
+					\sihao \centering	\BUPT@year&
+					\sihao 			\BUPT@yearname&
+					\sihao \centering	\BUPT@mon&
+					\sihao 			\BUPT@monname&
+					\sihao \centering	\BUPT@day&
+					\sihao 			\BUPT@dayname\\
+				\end{tabular}
+			\end{center}
+		\end{minipage}
+		} \end{picture}
+    \end{titlepage}
+    \newpage
+
+	%----------------------------------------------------------
+	% The back of the coverpage
+	%----------------------------------------------------------
+	
+	\thispagestyle{empty}
+	\mbox{~}
+	\newpage
+
+    \song \normalsize
+
+    %-----------------------------------------------------------
+	% Declarations
+	% The first page
+	%-----------------------------------------------------------
+
+    \setcounter{page}{1}
+	%\addcontentsline{toc}{chapter}{\hei\BUPT@declarationname}
+	\markboth{\BUPT@declarationname}{\BUPT@declarationname}
+
+	{
+		\BUPT@compress
+
+		\begin{center}
+			\BUPT@creativename
+		\end{center}
+		
+		\BUPT@creative
+
+		\vspace{14pt}
+
+		\begin{center}
+			\BUPT@authorizationname
+		\end{center}
+
+		\BUPT@authorization
+
+	}
+	\cleardoublepage
+    \defaultfont%
+}
+
+
+\newenvironment{AbstractZh}{%
+	\addcontentsline{toc}{chapter}{\hei\BUPT@abstractzhname}
+	\markboth{\BUPT@abstractzhname}{\BUPT@abstractzhname}
+	\BUPT@compress
+	\begin{center}
+		\hei\sanhao\BUPT@titlezh\\
+		\vspace{16pt}
+		\hei\xiaosan\BUPT@abstractzhname\\
+		\vspace{15pt}
+	\end{center}
+	\sihao\par
+	}{
+		\par
+		\vspace{14pt}
+		\hei\sihao\BUPT@keywordszhname: \song\BUPT@keywordszh
+		\cleardoublepage
+		\defaultfont
+	}
+\newenvironment{AbstractEn}{%
+	\addcontentsline{toc}{chapter}{\hei\BUPT@abstractenname}
+	\markboth{\BUPT@abstractenname}{\BUPT@abstractenname}
+	\BUPT@compress
+	\begin{center}
+		\hei\sanhao\uppercase{\BUPT@titleen}\\
+		\vspace{16pt}
+		\hei\xiaosan\BUPT@abstractenname\\
+		\vspace{15pt}
+	\end{center}
+	\sihao\par
+}{%
+	\par
+	\vspace{14pt}
+	\hei\sihao\BUPT@keywordsenname: \song\BUPT@keywordsen
+	\cleardoublepage
+	\defaultfont
+}
+
+\newenvironment{Denotation}{%
+	\defaultfont
+	\chapter*{\BUPT@denotationname}
+	\addcontentsline{toc}{chapter}{\BUPT@denotationname}
+	\markboth{\BUPT@denotationname}{\BUPT@denotationname}
+	\begin{longtable}{@{}p{2cm}@{\hspace{1cm}}p{12.5cm}@{}}
+}{%
+	\end{longtable}
+	\defaultfont
+}
+
+\newcommand{\DenoteItem}[2]{ {\hei#1} & {\song#2} \\}
+
+\renewcommand\appendix{\@appendix%
+  \renewcommand{\CJKchaptername}{}%
+  \renewcommand{\CJKprechaptername}{\BUPT@appendixname}
+  \renewcommand{\CJKthechapter}{\@arabic{\c@chapter}}
+  \renewcommand{\chaptertitlename}{\CJKprechaptername\CJKthechapter}
+}
+
+\newenvironment{Acknowledgment}{%
+    \defaultfont
+    \chapter*{\BUPT@acknowledgename}
+    \markboth{\BUPT@acknowledgename}{\BUPT@acknowledgename}
+    \addcontentsline{toc}{chapter}{\hei\BUPT@acknowledgename}
+}{%
+	\defaultfont
+}
+\newenvironment{Publications}{%
+	\defaultfont
+	\chapter*{\BUPT@publicationname}
+	\markboth{\BUPT@publicationname}{\BUPT@publicationname}
+	\addcontentsline{toc}{chapter}{\hei\BUPT@publicationname}
+	\renewcommand{\labelenumi}{[\arabic{enumi}]}
+	\begin{enumerate}%
+}{%
+	\end{enumerate}
+	\defaultfont
+}
+%
+%===================================================================
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 公式的精调
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \eqnarray如果很长，影响分栏、换行和分页（整块挪动，造成页面空白），
+% 可以设置成为自动调整模式
+\allowdisplaybreaks[4]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%下面这组命令使浮动对象的缺省值稍微宽松一点，从而防止幅度
+%对象占据过多的文本页面，也可以防止在很大空白的浮动页上放置
+%很小的图形。
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\textfraction}{0.15}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.65}
+\renewcommand{\floatpagefraction}{0.60}
+
+\newlength\CJKtwospaces
+\def\CJKindent{
+    \settowidth\CJKtwospaces{\CJKchar{"0A1}{"0A1}\CJKchar{"0A1}{"0A1}}%
+    \parindent\CJKtwospaces
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 设置行距和段落间垂直距离
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 段落之间的竖直距离
+\setlength{\parskip}{3pt plus1pt minus1pt}
+
+% 定义行距
+\renewcommand{\baselinestretch}{1.2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 调整列表环境的垂直间距
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\let\orig@Itemize =\itemize
+\let\orig@Enumerate =\enumerate
+\let\orig@Description =\description
+
+\def\Myspacing{\itemsep=1.5ex \topsep=-0.5ex \partopsep=0pt \parskip=0pt \parsep=0.5ex}
+
+\def\newitemsep{
+\renewenvironment{itemize}{\orig@Itemize\Myspacing}{\endlist}
+\renewenvironment{enumerate}{\orig@Enumerate\Myspacing}{\endlist}
+\renewenvironment{description}{\orig@Description\Myspacing}{\endlist}
+}
+
+\def\olditemsep{
+\renewenvironment{itemize}{\orig@Itemize}{\endlist}
+\renewenvironment{enumerate}{\orig@Enumerate}{\endlist}
+\renewenvironment{description}{\orig@Description}{\endlist}
+}
+
+\newitemsep
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 修改引用的格式，
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 增加 \ucite 命令使显示的引用为上标形式
+\newcommand{\ucite}[1]{$^{\mbox{\scriptsize \cite{#1}}}$}
+\newcommand{\BIBand}{and}
+%\bibpunct{[}{]}{,}{s}{}{\textsuperscript{,}}
+%\renewcommand\NAT@open{\textsuperscript{[}}
+%\renewcommand\NAT@close{\textsuperscript{]}}
+
+%=======================================================================
+% The captions
+\renewcommand{\captionfont}{\wuhao\kai\rmfamily}
+\renewcommand{\captionlabelfont}{\wuhao\kai\rmfamily}
+%\renewcommand{\captionlabeldelim}{\hspace{1em}}
+\renewcommand{\thefigure}{\thechapter--\@arabic\c@figure}
+\renewcommand{\thetable}{\thechapter--\@arabic\c@table}
+\renewcommand{\theequation}{\thechapter--\@arabic\c@equation}
+%=======================================================================
+
+%=======================================================================
+% Invoke CJK
+\AtBeginDocument{\begin{CJK*}{GBK}{song}\CJKcaption{BUPT}%
+	\CJKtilde\CJKindent\sloppy}
+\AtEndDocument{\clearpage\end{CJK*}}
+%=======================================================================
+
+
+
+
+  \def\@part[#1]#2{%
+      \ifnum \c@secnumdepth >-2\relax
+        \refstepcounter{part}%
+        \addcontentsline{toc}{part}{\CJKprepartname\expandafter\noexpand\CJKthepart\CJKpartname\hspace{1em}#1}%
+      \else
+        \addcontentsline{toc}{part}{#1}%
+      \fi
+      \markboth{}{}%
+      {\centering
+       \interlinepenalty \@M
+       \normalfont
+       \ifnum \c@secnumdepth >-2\relax
+         \huge\bfseries \CJKprepartname\CJKthepart\CJKpartname
+         \par
+         \vskip 20\p@
+       \fi
+       \Huge \bfseries #2\par}%
+      \@endpart}
+
+\endinput
